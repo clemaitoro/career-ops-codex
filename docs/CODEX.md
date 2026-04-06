@@ -18,6 +18,8 @@ Needs adaptation in Codex:
 - `batch/batch-runner.sh` because it depends on `claude -p`
 - Claude hooks in `.claude/settings.json`
 
+See [CODEX_WORKFLOWS.md](CODEX_WORKFLOWS.md) for the main Codex-native search and application-fill workflows.
+
 ## How to Use This Repo in Codex
 
 1. Open the repo in Codex.
@@ -29,6 +31,7 @@ Examples:
 - "Scan my configured portals and add promising roles to the pipeline"
 - "Process the pending URLs in `data/pipeline.md`"
 - "Update my archetypes for backend platform roles"
+- "Help me fill this application form and stop before submit"
 
 ## Feature Mapping
 
@@ -41,6 +44,7 @@ Claude UX:
 
 Codex caveat:
 - Batch can be done manually or with Codex sub-agents, but the shipped `batch-runner.sh` is not Codex-native.
+- Search and application-assist work best as interactive Codex sessions rather than one-shot CLI commands.
 
 ## Recommended Fork Changes
 

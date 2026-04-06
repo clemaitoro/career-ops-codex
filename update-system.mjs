@@ -62,6 +62,7 @@ const SYSTEM_PATHS = [
   '.claude/skills/',
   'docs/',
   'docs/CODEX.md',
+  'docs/CODEX_WORKFLOWS.md',
   'VERSION',
   'DATA_CONTRACT.md',
   'CONTRIBUTING.md',

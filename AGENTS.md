@@ -12,12 +12,14 @@ Use this file as the primary repo instruction entrypoint in Codex. Keep `CLAUDE.
 - Tracker integrity scripts (`merge`, `verify`, `normalize`, `dedup`)
 - Dashboard TUI in `dashboard/`
 - Repo customization by editing `config/profile.yml`, `modes/_profile.md`, `portals.yml`, and templates
+- Browser-assisted application filling with user review before submit
 
 ## What Is Not Codex-Native Yet
 
 - The `/career-ops ...` slash-command UX from `.claude/skills/career-ops/SKILL.md`
 - The standalone batch runner in `batch/batch-runner.sh`, which shells out to `claude -p`
 - Claude-specific hooks in `.claude/settings.json`
+- One-command slash-command routing for search/apply; in Codex this is plain-language intent routing
 
 In Codex, use natural-language requests instead of slash commands. Examples:
 
@@ -26,6 +28,8 @@ In Codex, use natural-language requests instead of slash commands. Examples:
 - "Process pending URLs from `data/pipeline.md`"
 - "Generate a tailored PDF for this role"
 - "Show me tracker status"
+- "Scan my portals config and add relevant jobs to `data/pipeline.md`"
+- "Open this application form, read the questions, and draft or fill answers, but stop before submit"
 
 ## Data Contract
 
@@ -76,10 +80,51 @@ Use the same mode concepts as the Claude version, but route from user intent ins
 
 Read `modes/_shared.md` plus the relevant mode file before executing a mode.
 
+## Primary Codex Workflows
+
+### Job Search
+
+When the user wants job discovery:
+
+1. Read `portals.yml`
+2. Read `data/scan-history.tsv` if it exists
+3. Read `data/pipeline.md` and `data/applications.md` if they exist
+4. Execute the discovery strategy from `modes/scan.md`
+5. Add only relevant, deduped jobs to `data/pipeline.md`
+6. Record outcomes in `data/scan-history.tsv`
+7. Summarize what was added and what was skipped
+
+Recommended user phrasing:
+- "Scan my portals for new backend platform roles"
+- "Search configured companies and add strong matches to the pipeline"
+
+### Application Assist / Autofill
+
+When the user wants help filling an application:
+
+1. Read `modes/apply.md`
+2. Prefer a visible browser session so the user can see every action
+3. Identify company and role from the form page
+4. Load the matching report from `reports/` if one exists
+5. Read `cv.md` and `config/profile.yml`
+6. Draft answers for visible questions
+7. If the user wants it, fill fields in the browser
+8. Stop before final submit unless the user gives an explicit final confirmation
+
+Important distinction:
+- "autofill" means browser-assisted filling and answer drafting
+- it does not mean background mass-application or silent submission
+
+Recommended user phrasing:
+- "Help me fill this form and stop before submit"
+- "Open this application page, read the questions, and draft answers from my report"
+- "Fill the visible fields from my profile and CV, then wait for my review"
+
 ## Global Rules
 
 - Never invent experience, metrics, or credentials.
 - Never submit an application without explicit user confirmation.
+- Never run blind mass-apply behavior across multiple jobs.
 - For the first evaluation in a session, run `node cv-sync-check.mjs`.
 - After evaluations, write tracker additions via TSV in `batch/tracker-additions/` and merge them; do not manually add new rows directly to `data/applications.md`.
 - Use the JD language for generated outputs. Default to English.

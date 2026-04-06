@@ -82,6 +82,7 @@ claude   # Open Claude Code in this directory
 See [docs/SETUP.md](docs/SETUP.md) for the full setup guide.
 
 Using Codex instead of Claude Code? See [docs/CODEX.md](docs/CODEX.md). The core scripts and data model transfer cleanly, but the slash-command UX and batch runner are Claude-specific as shipped.
+For the practical Codex workflow, especially search and browser-assisted application filling, see [docs/CODEX_WORKFLOWS.md](docs/CODEX_WORKFLOWS.md).
 
 ## Usage
 

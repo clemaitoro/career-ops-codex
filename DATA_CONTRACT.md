@@ -52,6 +52,7 @@ These files contain system logic, scripts, templates, and instructions that impr
 | `fonts/*` | Self-hosted fonts |
 | `.claude/skills/*` | Skill definitions |
 | `docs/*` | Documentation |
+| `docs/CODEX_WORKFLOWS.md` | Codex workflow guide |
 | `VERSION` | Current version number |
 | `DATA_CONTRACT.md` | This file |
 
