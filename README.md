@@ -81,6 +81,8 @@ claude   # Open Claude Code in this directory
 
 See [docs/SETUP.md](docs/SETUP.md) for the full setup guide.
 
+Using Codex instead of Claude Code? See [docs/CODEX.md](docs/CODEX.md). The core scripts and data model transfer cleanly, but the slash-command UX and batch runner are Claude-specific as shipped.
+
 ## Usage
 
 Career-ops is a single slash command with multiple modes:
@@ -155,6 +157,7 @@ Features: 6 filter tabs, 4 sort modes, grouped/flat view, lazy-loaded previews, 
 
 ```
 career-ops/
+├── AGENTS.md                    # Codex repo instructions
 ├── CLAUDE.md                    # Agent instructions
 ├── cv.md                        # Your CV (create this)
 ├── article-digest.md            # Your proof points (optional)
